@@ -1,0 +1,9 @@
+{
+  "name": "13_todo-list_custom-services",
+  "version": "1.0.0",
+  "dependencies": {
+	"angular": "1.5.8",
+	"jquery": "2.2.4",
+	"angular-resource": "1.5.8"
+  }
+}

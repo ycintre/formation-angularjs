@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head lang="en">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="todo.css"/>
+	<title>TODO list</title>
+</head>
+<body>
+<section id="todoapp" ng-controller="todoController as todoCtrl">
+	<header id="header">
+		<h1>Todo APP</h1>
+
+		<form id="todo-form">
+			<input type="text" id="new-todo" placeholder="Ajouter une tâche" autocomplete="off" autofocus/>
+		</form>
+		<section id="main">
+			<input type="checkbox" id="toggle-all">
+			<label for="toggle-all">Tâches finies</label>
+			<ul id="todo-list">
+				<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
+				<li>
+					<div class="view">
+						<label for="task"></label>
+						<!-- Switch pour passer la tâche au statut finie -->
+						<input id="task" type="checkbox" class="toggle"/>
+						<!-- Bouton permettant de supprimer une tâche -->
+						<button class="destroy"></button>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<footer id="footer">
+			<span id="todo-count"><strong> tâches restantes</strong></span>
+		</footer>
+	</header>
+</section>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="heroesApp">
+<head>
+	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body ng-controller="heroesController as heroesCtrl">
+
+<h1>Marvel Heroes</h1>
+
+<div ng-repeat="hero in heroesCtrl.heroes">
+	<hero-info-card hero="hero" on-delete="heroesCtrl.removeHero(hero)"></hero-info-card>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="app.js"></script>
+<script src="components/heroInfoCard/heroInfoCard.component.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "order": {
+	"title": "Commandes en attente : {{ count }}"
+  },
+  "reservation": {
+	"title": "Ajouter une réservation",
+	"name": {
+	  "label": "Nom du client",
+	  "errors": {
+		"required": "Le nom du client est obligatoire"
+	  }
+	},
+	"table": {
+	  "label": "Numéro de table",
+	  "errors": {
+		"required": "Le numéro de table est obligatoire",
+		"min": "Le numéro de table doit être supérieur à 1",
+		"max": "Le numéro de table doit être inférieur à 15"
+	  }
+	},
+	"check-in": {
+	  "label": "Date d'arrivée",
+	  "errors": {
+		"required": "La date d'arrivée est obligatoire",
+		"valid": "La date d'arrivée est invalide",
+		"max": "Le date d'arrivée doit être inférieur à la date de départ"
+	  }
+	},
+	"check-out": {
+	  "label": "Date de départ",
+	  "errors": {
+		"required": "La date de départ est obligatoire",
+		"valid": "La date de départ est invalide",
+		"min": "Le date de départ doit être supérieur à la date d'arrivée"
+	  }
+	},
+	"save": {
+	  "label": "Enregistrer"
+	}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "00_json-server",
+  "version": "1.0.0",
+  "description": "Local json server for testing purpose",
+  "main": "serve.sh",
+  "dependencies": {
+	"json-server": "^0.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ycintre",
+  "license": "ISC"
+}

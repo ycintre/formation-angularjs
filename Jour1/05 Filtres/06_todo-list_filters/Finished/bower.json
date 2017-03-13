@@ -1,0 +1,8 @@
+{
+  "name": "06_todo-list_filters",
+  "version": "1.0.0",
+  "dependencies": {
+	"jquery": "2.2.4",
+	"angular": "1.5.8"
+  }
+}

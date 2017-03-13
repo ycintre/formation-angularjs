@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="pizzaApp">
+<head>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="pizzaController as pzCtrl">
+	<div class="well">
+		<h1>
+			Pending orders: {{ pzCtrl.count }}
+		</h1>
+		<button class="btn btn-success" ng-click="pzCtrl.addOrder()">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+		<button class="btn btn-danger" ng-click="pzCtrl.removeOrder()">
+			<span class="glyphicon glyphicon-minus"></span>
+		</button>
+	</div>
+	<div class="well">
+		<h1>Make a reservation</h1>
+
+		<form name="reservationForm">
+
+			<div class="form-group has-error">
+				<label class="control-label" for="clientName">Client name</label>
+				<input type="text" class="form-control" id="clientName" name="clientName" ng-model="pzCtrl.reservation.clientName"/>
+				<span class="help-block">Client name is required</span>
+			</div>
+
+			<div class="form-group has-error">
+				<label class="control-label" for="tableNumber">Table number</label>
+				<input type="number" class="form-control" id="tableNumber" name="tableNumber" ng-model="pzCtrl.reservation.tableNumber"/>
+				<span class="help-block">Table number is required</span>
+				<span class="help-block">Table number is not must be greater than 1</span>
+				<span class="help-block">Table number is not must be less than 15</span>
+			</div>
+
+			<div class="form-group has-error">
+				<label class="control-label" for="checkin">Check-in</label>
+				<input type="datetime-local" class="form-control" id="checkin" name="checkin" ng-model="pzCtrl.reservation.checkin"/>
+				<span class="help-block">Check-in is required</span>
+				<span class="help-block">Check-in is not valid</span>
+				<span class="help-block">Check-in must be before check-out</span>
+			</div>
+
+			<div class="form-group has-error">
+				<label class="control-label" for="checkout">Check-out</label>
+				<input type="datetime-local" class="form-control" id="checkout" name="checkout" ng-model="pzCtrl.reservation.checkout"/>
+				<span class="help-block">Check-out is required</span>
+				<span class="help-block">Check-out is not valid</span>
+				<span class="help-block">Check-out must be after check-in</span>
+			</div>
+
+			<button class="btn btn-success" ng-click="pzCtrl.createReservation()">Save</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>

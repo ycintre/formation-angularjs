@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head lang="en">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="todo.css"/>
+	<title>TODO list</title>
+</head>
+<body>
+<section id="todoapp" ng-controller="todoController as todoCtrl">
+	<header id="header">
+		<h1>Todo APP</h1>
+
+		<form id="todo-form" ng-submit="todoCtrl.addTodo()">
+			<input type="text" id="new-todo" placeholder="Ajouter une tâche" autocomplete="off" autofocus
+				   ng-model="todoCtrl.newTodo"/>
+		</form>
+		<section id="main">
+			<input type="checkbox" id="toggle-all" ng-model="todoCtrl.allChecked"
+				   ng-click="todoCtrl.markAll(todoCtrl.allChecked)">
+			<label for="toggle-all">Tâches finies</label>
+			<ul id="todo-list">
+				<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
+				<li ng-repeat="todo in todoCtrl.todos | filter:todoCtrl.statusFilter"
+					ng-class="{completed: todo.completed}">
+					<div class="view">
+						<label for="task_{{$index}}">{{ todo.title }}</label>
+						<!-- Switch pour passer la tâche au statut finie -->
+						<input id="task_{{$index}}" type="checkbox" class="toggle" ng-model="todo.completed"
+							   ng-click="todoCtrl.updateTodo(todo)"/>
+						<!-- Bouton permettant de supprimer une tâche -->
+						<button class="destroy" ng-click="todoCtrl.removeTodo(todo, $index)"></button>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<footer id="footer">
+			<span id="todo-count"><strong>{{ todoCtrl.remaining() }} tâches restantes</strong></span>
+			<ul id="filters">
+				<li>
+					<!-- Si le filtre est actif appliquer la class 'selected' sur a -->
+					<a ng-class="{selected: todoCtrl.status === 'all'}"
+					   ng-click="todoCtrl.changeStatus('all')">Toutes</a>
+				</li>
+				<li>
+					<a ng-class="{selected: todoCtrl.status === 'active'}"
+					   ng-click="todoCtrl.changeStatus('active')">Active</a>
+				</li>
+				<li>
+					<a ng-class="{selected: todoCtrl.status === 'completed'}"
+					   ng-click="todoCtrl.changeStatus('completed')">Complète</a>
+				</li>
+			</ul>
+		</footer>
+	</header>
+</section>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="app.js"></script>
+<script src="app.config.js"></script>
+<script src="todo.controller.js"></script>
+<script src="todo.service.js"></script>
+</body>
+</html>

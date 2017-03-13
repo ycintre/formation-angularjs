@@ -1,0 +1,88 @@
+<!doctype html>
+<html ng-app="pizzaApp">
+<head>
+	<meta charset="utf-8">
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="angular.js"></script>
+	<script src="angular-translate.js"></script>
+	<script src="angular-translate-loader-static-files.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="pizzaController as pzCtrl">
+	<div class="well">
+		<h1 translate="order.title" translate-values="{ count: pzCtrl.count}">
+			Pending orders: {{ pzCtrl.count }}
+		</h1>
+		<button class="btn btn-success" ng-click="pzCtrl.addOrder()">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+		<button class="btn btn-danger" ng-click="pzCtrl.removeOrder()">
+			<span class="glyphicon glyphicon-minus"></span>
+		</button>
+	</div>
+	<div class="well">
+		<h1 translate="reservation.title">Make a reservation</h1>
+
+		<form name="reservationForm">
+
+			<div class="form-group" ng-class="{'has-error': reservationForm.clientName.$invalid}">
+				<label class="control-label" for="clientName" translate="reservation.name.label">Client name</label>
+				<input type="text" class="form-control" id="clientName" name="clientName"
+					   ng-model="pzCtrl.reservation.clientName" required/>
+				<span class="help-block" ng-show="reservationForm.clientName.$error.required"
+					  translate="reservation.name.errors.required">Client name is required</span>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error': reservationForm.tableNumber.$invalid}">
+				<label class="control-label" for="tableNumber" translate="reservation.table.label">Table number</label>
+				<input type="number" class="form-control" id="tableNumber" name="tableNumber"
+					   ng-model="pzCtrl.reservation.tableNumber"
+					   required min="1" max="15"/>
+				<span class="help-block"
+					  ng-show="reservationForm.tableNumber.$error.required"
+					  translate="reservation.table.errors.required">Table number is required</span>
+				<span class="help-block" ng-show="reservationForm.tableNumber.$error.min"
+					  translate="reservation.table.errors.min">Table number is not must be greater than 1</span>
+				<span class="help-block" ng-show="reservationForm.tableNumber.$error.max"
+					  translate="reservation.table.errors.max">Table number is not must be less than 15</span>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error': reservationForm.checkin.$invalid}">
+				<label class="control-label" for="checkin" translate="reservation.check-in.label">Check-in</label>
+				<input type="datetime-local" class="form-control" id="checkin" name="checkin"
+					   ng-model="pzCtrl.reservation.checkin" required ng-max="pzCtrl.reservation.checkout"/>
+				<span class="help-block" ng-show="reservationForm.checkin.$error.required"
+					  translate="reservation.check-in.errors.required">Check-in is required</span>
+				<span class="help-block"
+					  ng-show="reservationForm.checkin.$error.datetimelocal"
+					  translate="reservation.check-in.errors.valid">Check-in is not valid</span>
+				<span class="help-block"
+					  ng-show="reservationForm.checkin.$error.max"
+					  translate="reservation.check-in.errors.max">Check-in must be before check-out</span>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error': reservationForm.checkout.$invalid}">
+				<label class="control-label" for="checkout" translate="reservation.check-out.label">Check-out</label>
+				<input type="datetime-local" class="form-control" id="checkout" name="checkout"
+					   ng-model="pzCtrl.reservation.checkout" required ng-min="pzCtrl.reservation.checkin"/>
+				<span class="help-block" ng-show="reservationForm.checkout.$error.required"
+					  translate="reservation.check-out.errors.required">Check-out is required</span>
+				<span class="help-block"
+					  ng-show="reservationForm.checkout.$error.datetimelocal"
+					  translate="reservation.check-out.errors.valid">Check-out is not valid</span>
+				<span class="help-block"
+					  ng-show="reservationForm.checkout.$error.min"
+					  translate="reservation.check-out.errors.min">Check-out must be after check-in</span>
+			</div>
+
+			<button class="btn btn-success" ng-click="pzCtrl.createReservation()"
+					ng-disabled="reservationForm.$invalid"
+					translate="reservation.save.label">Save
+			</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>

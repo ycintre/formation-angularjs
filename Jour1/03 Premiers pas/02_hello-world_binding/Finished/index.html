@@ -1,0 +1,14 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<script src="angular.js"></script>
+</head>
+<body>
+<h1 style="color: {{ user.color }};">Hello {{ user.name }}</h1>
+<label for="name">Name:</label> <input id="name" type="text" ng-model="user.name"/>
+<label for="color">Color:</label> <input id="color" type="text" ng-model="user.color"/>
+
+
+<pre>{{ user | json }}</pre>
+</body>
+</html>
