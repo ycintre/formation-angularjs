@@ -1,4 +1,4 @@
-# TP Routing
+# TP $scope
 > Le but du TP est d'utiliser un controller avec la syntaxe `$scope`
 
 ## Instructions

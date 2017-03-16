@@ -1,4 +1,4 @@
-# TP Routing
+# TP Build-in directives
 > Le but du TP est d'utiliser differentes directives pour construire une application
 
 ## Instructions

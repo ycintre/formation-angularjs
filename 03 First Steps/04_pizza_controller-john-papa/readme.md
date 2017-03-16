@@ -1,4 +1,4 @@
-# TP Routing
+# TP Controller
 > Le but du TP est d'utiliser un controller avec la syntaxe recommandée par John Papa
 
 ## Instructions

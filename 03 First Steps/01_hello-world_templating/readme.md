@@ -1,4 +1,4 @@
-# TP Routing
+# TP Templating
 > Le but du TP est de créer une première application angular
 
 ## Instructions

@@ -1,4 +1,4 @@
-# TP Routing
+# TP Binding
 > Le but du TP est de manipuler la directive `ng-model`
 
 ## Instructions
