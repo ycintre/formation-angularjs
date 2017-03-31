@@ -1,0 +1,10 @@
+<div class="panel panel-primary">
+	<a class="btn btn-danger pull-right" ng-click="$ctrl.onDelete({hero: $ctrl.hero})">&times;</a>
+
+	<div class="panel-heading">{{ $ctrl.hero.name }}</div>
+	<div class="panel-body">
+		<span class="label label-success">{{ $ctrl.hero.team }}</span>
+		{{ $ctrl.hero.alterEgo }}
+	</div>
+
+</div>
