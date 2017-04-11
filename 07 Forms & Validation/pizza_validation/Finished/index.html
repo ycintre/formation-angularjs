@@ -4,6 +4,7 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 	<script src="angular.js"></script>
+	<script src="angular-messages.js"></script>
 	<script src="app.js"></script>
 </head>
 <body>
@@ -24,14 +25,19 @@
 
 		<form name="reservationForm">
 
+			<pre>{{ reservationForm | json}}</pre>
+
 			<div class="form-group"
 				 ng-class="{'has-error': reservationForm.clientName.$touched && reservationForm.clientName.$invalid}">
 				<label class="control-label" for="clientName">Client name</label>
 				<input type="text" class="form-control" id="clientName" name="clientName"
 					   ng-model="pzCtrl.reservation.clientName" required/>
+
+				<!-- Demo with ng-show -->
 				<span class="help-block"
 					  ng-show="reservationForm.clientName.$touched && reservationForm.clientName.$error.required">Client name is required</span>
 			</div>
+
 
 			<div class="form-group"
 				 ng-class="{'has-error': reservationForm.tableNumber.$touched && reservationForm.tableNumber.$invalid}">
@@ -39,12 +45,15 @@
 				<input type="number" class="form-control" id="tableNumber" name="tableNumber"
 					   ng-model="pzCtrl.reservation.tableNumber"
 					   required min="1" max="15"/>
+
+				<!-- Demo with ng-messages (inline) -->
 				<span class="help-block"
-					  ng-show="reservationForm.tableNumber.$touched && reservationForm.tableNumber.$error.required">Table number is required</span>
-				<span class="help-block"
-					  ng-show="reservationForm.tableNumber.$touched && reservationForm.tableNumber.$error.min">Table number is not must be greater than 1</span>
-				<span class="help-block"
-					  ng-show="reservationForm.tableNumber.$touched && reservationForm.tableNumber.$error.max">Table number is not must be less than 15</span>
+					  ng-show="reservationForm.tableNumber.$touched && reservationForm.tableNumber.$error"
+					  ng-messages="reservationForm.tableNumber.$error">
+				<span ng-message="required">Table number is required</span>
+				<span ng-message="min">Table number is not must be greater than 1</span>
+				<span ng-message="max">Table number is not must be less than 15</span>
+				</span>
 			</div>
 
 			<div class="form-group"
@@ -52,12 +61,13 @@
 				<label class="control-label" for="checkin">Check-in</label>
 				<input type="datetime-local" class="form-control" id="checkin" name="checkin"
 					   ng-model="pzCtrl.reservation.checkin" required ng-max="pzCtrl.reservation.checkout"/>
+
+				<!-- Demo with ng-messages (external file) -->
 				<span class="help-block"
-					  ng-show="reservationForm.checkin.$touched && reservationForm.checkin.$error.required">Check-in is required</span>
-				<span class="help-block"
-					  ng-show="reservationForm.checkin.$touched && reservationForm.checkin.$error.datetimelocal">Check-in is not valid</span>
-				<span class="help-block"
-					  ng-show="reservationForm.checkin.$touched && reservationForm.checkin.$error.max">Check-in must be before check-out</span>
+					  ng-show="reservationForm.checkin.$touched && reservationForm.checkin.$error"
+					  ng-messages="reservationForm.checkin.$error">
+					<span ng-messages-include="validation-messages.html"></span>
+				</span>
 			</div>
 
 			<div class="form-group"

@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	var app = angular.module('pizzaApp', []);
+	var app = angular.module('pizzaApp', ['ngMessages']);
 
 	app.controller('pizzaController', PizzaController);
 
