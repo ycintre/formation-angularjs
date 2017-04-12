@@ -17,7 +17,7 @@
   - déclarer un composant `heroInfoCard` avec les infos nécessaires:
     - `templateUrl`
     - `controller`
-    - `binding` (hero et fonction de suppresion)
+    - `bindings` (hero et fonction de suppresion)
 
 - Dans le fichier `heroInfoCard.component.html`
   - completer les expressions vides pour afficher les informations du hero
