@@ -3,6 +3,9 @@
 
 ## Instructions
 
+- Installer gulp
+  - `npm install -g gulp-cli`
+  
 - Récupérer les dépendances bower et npm
   - `npm install`
   - `bower install`
@@ -17,7 +20,7 @@
   - Créer une tache qui déclenche tout le processus de build
   > tip: run-sequence
 
-- Quand vous ajoutez des plugins gulp, pensez à les ajouter au package.json (manuellement ou via `npm install --save-dev le-nom-de-mon-plugin)
+- Quand vous ajoutez des plugins gulp, pensez à les ajouter au package.json (manuellement ou via `npm install --save-dev le-nom-de-mon-plugin`)
   
 - A essayer si vous avez le temps...
   - Minifier le html
