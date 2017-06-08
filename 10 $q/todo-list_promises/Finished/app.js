@@ -65,8 +65,26 @@
 			}
 		};
 
-		var def = $q.defer();
-		var prom = def.promise;
+		function loadList() {
+			var def = $q.defer();
+			$timeout(function () {
+				def.resolve([
+					{title: 'write slides', completed: true},
+					{title: 'create exercices', completed: true},
+					{title: 'invite students', completed: false},
+					{title: 'book hotel', completed: false},
+					{title: 'rent car', completed: false}
+				]);
+			}, getRandomInt(1000, 3000));
+
+			$timeout(function () {
+				def.reject('Internal server error');
+			}, getRandomInt(1000, 3000));
+
+			return def.promise;
+		}
+
+		var prom = loadList();
 		prom.then(function (result) {
 				vm.todos = result;
 			}
@@ -77,21 +95,6 @@
 				}).html('Erreur ! <br />' + error)
 			);
 		});
-
-		$timeout(function () {
-			def.resolve([
-				{title: 'write slides', completed: true},
-				{title: 'create exercices', completed: true},
-				{title: 'invite students', completed: false},
-				{title: 'book hotel', completed: false},
-				{title: 'rent car', completed: false}
-			]);
-		}, getRandomInt(1000, 3000));
-
-		$timeout(function () {
-			def.reject('Internal server error');
-		}, getRandomInt(1000, 3000));
-
 
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
