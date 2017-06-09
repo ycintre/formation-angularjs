@@ -7,26 +7,22 @@ check npm version
 
 	npm --version
 
-install a package from npm
-
-	npm install bower
-	
 create a new npm package
 
 	npm init
 
-install a package from npm & save it
- 
-	npm install bower --save
+install a package from npm
 
-check the installed package
+	npm install gulp --save
+	
 
-	npm list
+install bower globally
+
+	npm install bower -g
+	
+check the bower version
+
 	bower --version
-
-install a package from bower
-
-	bower install angular
 
 create a new bower package
 
