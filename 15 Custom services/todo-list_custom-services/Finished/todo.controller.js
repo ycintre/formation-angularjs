@@ -63,7 +63,7 @@
 			var promises = [];
 			vm.todos.forEach(function (todo) {
 				todo.completed = mark;
-				promises.push(vm.updateTodo(todo, true));
+				promises.push(todoService.updateTodo(todo, true));
 			});
 
 			$q.all(promises).then(function () {

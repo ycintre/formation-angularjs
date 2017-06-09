@@ -7,29 +7,33 @@
 
 	TodoService.$inject = ['$resource', 'CONFIG'];
 	function TodoService($resource, CONFIG) {
-		var $this = this;
 
 		var Todo = $resource(CONFIG.endpoints.todos + ':id', {id: '@id'}, {
 			'update': {method: 'PUT'}
 		});
 
-		$this.addTodo = function (todo) {
+		function addTodo(todo) {
 			var newTodo = new Todo(todo);
 			return newTodo.$save();
-		};
+		}
 
-		$this.removeTodo = function (todo) {
+		function removeTodo(todo) {
 			return todo.$remove();
-		};
+		}
 
-		$this.updateTodo = function (todo) {
+		function updateTodo(todo) {
 			return Todo.update(todo).$promise;
-		};
+		}
 
-		$this.loadTodos = function () {
+		function loadTodos() {
 			return Todo.query();
-		};
+		}
 
-		return $this;
+		return {
+			addTodo: addTodo,
+			removeTodo: removeTodo,
+			updateTodo:updateTodo,
+			loadTodos: loadTodos
+		};
 	}
 }());
