@@ -3,5 +3,5 @@
 var gulp = require('gulp');
 
 gulp.task('default', function () {
-	// Do something
+	console.log('gulp is running')
 });
