@@ -23,7 +23,7 @@
 				completed: false
 			});
 			todo.$save(function () {
-				vm.loadTodos();
+				loadTodos();
 			});
 
 			vm.newTodo = '';
@@ -35,24 +35,30 @@
 
 			// Version avec Resource et callback
 			// Todo.remove(todo, function () {
-			// 	vm.loadTodos();
+			// 	loadTodos();
+			// });
+
+			// Version avec callback courte
+			// Todo.remove(todo, loadTodos);
+
+			// Version avec instance et $promise
+			// todo.$remove().then(function () {
+			// 	loadTodos();
 			// });
 
 			// Version avec instance et callback
-			// todo.$remove().then(function () {
-			// 	vm.loadTodos();
+			// todo.$remove(function () {
+			// 	loadTodos();
 			// });
 
-			// Version avec instance et $promise
-			// todo.$remove(function () {
-			// 	vm.loadTodos();
-			// });
+			// Version callback courte
+			// todo.$remove(loadTodos);
 		};
 
 		vm.updateTodo = function (todo, doNotLoad) {
 			return Todo.update(todo, function () {
 				if (!doNotLoad) {
-					vm.loadTodos();
+					loadTodos();
 				}
 			}).$promise;
 		};
@@ -85,7 +91,7 @@
 			});
 
 			$q.all(promises).then(function () {
-				vm.loadTodos();
+				loadTodos();
 			});
 		};
 
@@ -105,7 +111,18 @@
 		};
 
 		function loadTodos () {
+			// Version simple
 			vm.todos = Todo.query();
+
+			// Version avec promise
+			// Todo.query().$promise.then(function(response) {
+			// 	vm.todos = response;
+			// });
+
+			// Version avec callback
+			// Todo.query(function(response) {
+			// 	vm.todos = response;
+			// });
 		}
 
 		loadTodos();

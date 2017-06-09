@@ -28,7 +28,7 @@
 						<input id="task_{{$index}}" type="checkbox" class="toggle" ng-model="todo.completed"
 							   ng-click="todoCtrl.updateTodo(todo)"/>
 						<!-- Bouton permettant de supprimer une tâche -->
-						<button class="destroy" ng-click="todoCtrl.removeTodo(todo, $index)"></button>
+						<button class="destroy" ng-click="todoCtrl.removeTodo(todo)"></button>
 					</div>
 				</li>
 			</ul>
