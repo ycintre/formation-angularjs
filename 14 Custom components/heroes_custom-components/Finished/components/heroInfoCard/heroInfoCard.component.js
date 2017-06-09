@@ -6,13 +6,19 @@
 			templateUrl: 'components/heroInfoCard/heroInfoCard.component.html',
 			controller: HeroInfoCardController,
 			bindings: {
-				hero: '<',
+				heroParam: '<',
 				onDelete: '&'
 			}
 		});
 
 	HeroInfoCardController.$inject = [];
 	function HeroInfoCardController() {
-		console.log('Controller created for hero', this.hero);
+		var vm = this;
+		console.log('init component controller', vm);
+
+		vm.localDelete = function() {
+			console.log('in component contoller remove function');
+			vm.onDelete({someone: vm.heroParam});
+		}
 	}
 }());

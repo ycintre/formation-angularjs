@@ -15,7 +15,7 @@
 		});
 
 		vm.removeHero = function (hero) {
-			console.log(hero);
+			console.log('in main contoller remove function');
 			hero.$remove(function () {
 				vm.loadHeroes();
 			});
