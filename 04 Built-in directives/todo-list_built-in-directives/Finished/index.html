@@ -15,16 +15,16 @@
 				   ng-model="todoCtrl.newTodo"/>
 		</form>
 		<section id="main">
-			<input type="checkbox" id="toggle-all" ng-model="todoCtrl.allChecked"
-				   ng-click="todoCtrl.markAll(todoCtrl.allChecked)">
+			<input type="checkbox" id="toggle-all" ng-model="allChecked"
+				   ng-click="todoCtrl.markAll(allChecked)">
 			<label for="toggle-all">Tâches finies</label>
 			<ul id="todo-list">
 				<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
 				<li ng-repeat="todo in todoCtrl.todos" ng-class="{completed: todo.completed}">
 					<div class="view">
-						<label for="task_{{$index}}">{{ todo.title }}</label>
+						<label for="{{ 'task_' + $index }}">{{ todo.title }}</label>
 						<!-- Switch pour passer la tâche au statut finie -->
-						<input id="task_{{$index}}" type="checkbox" class="toggle" ng-model="todo.completed"/>
+						<input id="{{ 'task_' + $index }}" type="checkbox" class="toggle" ng-model="todo.completed"/>
 						<!-- Bouton permettant de supprimer une tâche -->
 						<button class="destroy" ng-click="todoCtrl.removeTodo(todo)"></button>
 					</div>
