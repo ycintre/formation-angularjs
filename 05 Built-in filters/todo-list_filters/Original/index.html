@@ -15,18 +15,18 @@
 				   ng-model="todoCtrl.newTodo"/>
 		</form>
 		<section id="main">
-			<input type="checkbox" id="toggle-all" ng-model="todoCtrl.allChecked"
-				   ng-click="todoCtrl.markAll(todoCtrl.allChecked)">
+			<input type="checkbox" id="toggle-all" ng-model="allChecked"
+				   ng-click="todoCtrl.markAll(allChecked)">
 			<label for="toggle-all">Tâches finies</label>
 			<ul id="todo-list">
 				<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
 				<li ng-repeat="todo in todoCtrl.todos" ng-class="{completed: todo.completed}">
 					<div class="view">
-						<label for="task_{{$index}}">{{ todo.title }}</label>
+						<label for="{{ 'task_' + $index }}">{{ todo.title }}</label>
 						<!-- Switch pour passer la tâche au statut finie -->
-						<input id="task_{{$index}}" type="checkbox" class="toggle" ng-model="todo.completed"/>
+						<input id="{{ 'task_' + $index }}" type="checkbox" class="toggle" ng-model="todo.completed"/>
 						<!-- Bouton permettant de supprimer une tâche -->
-						<button class="destroy" ng-click="todoCtrl.removeTodo(todo, $index)"></button>
+						<button class="destroy" ng-click="todoCtrl.removeTodo(todo)"></button>
 					</div>
 				</li>
 			</ul>
@@ -35,17 +35,15 @@
 			<span id="todo-count"><strong>{{ todoCtrl.remaining() }} tâches restantes</strong></span>
 			<ul id="filters">
 				<li>
+					<!-- Utiliser un `ng-click` pour conserver l'état du filtre sélectionné -->
 					<!-- Si le filtre est actif appliquer la class 'selected' sur a -->
-					<a ng-class="{selected: todoCtrl.status === 'all'}"
-					   ng-click="todoCtrl.changeStatus('all')">Toutes</a>
+					<a>Toutes</a>
 				</li>
 				<li>
-					<a ng-class="{selected: todoCtrl.status === 'active'}"
-					   ng-click="todoCtrl.changeStatus('active')">Active</a>
+					<a>Active</a>
 				</li>
 				<li>
-					<a ng-class="{selected: todoCtrl.status === 'completed'}"
-					   ng-click="todoCtrl.changeStatus('completed')">Complète</a>
+					<a>Complète</a>
 				</li>
 			</ul>
 		</footer>
