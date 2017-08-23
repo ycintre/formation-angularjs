@@ -65,9 +65,10 @@
 			}
 		};
 
-		function loadList() {
+		function getTodos() {
 			var def = $q.defer();
 			$timeout(function () {
+				console.log('promise will be resolved...');
 				def.resolve([
 					{title: 'write slides', completed: true},
 					{title: 'create exercices', completed: true},
@@ -78,23 +79,30 @@
 			}, getRandomInt(1000, 3000));
 
 			$timeout(function () {
+				console.log('promise will be rejected...');
 				def.reject('Internal server error');
 			}, getRandomInt(1000, 3000));
 
 			return def.promise;
 		}
 
-		var prom = loadList();
-		prom.then(function (result) {
-				vm.todos = result;
-			}
-		).catch(function (error) {
-			$('body').append(
-				$('<div>', {
-					class: 'alert alert-danger'
-				}).html('Erreur ! <br />' + error)
-			);
-		});
+		function activate() {
+			var prom = getTodos();
+			prom.then(function (result) {
+					console.log('promise is now resolved!');
+					vm.todos = result;
+				}
+			).catch(function (error) {
+				console.log('promise is now rejected!');
+				$('body').append(
+					$('<div>', {
+						class: 'alert alert-danger'
+					}).html('Erreur ! <br />' + error)
+				);
+			});
+		}
+		activate();
+
 
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
