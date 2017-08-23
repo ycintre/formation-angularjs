@@ -64,18 +64,27 @@
 			}
 		};
 
-		$http({
-			method: 'GET',
-			url: 'http://localhost:3000/todos'
-		}).then(function successCallback(response) {
-			vm.todos = response.data;
-		}, function errorCallback(response) {
-			$('body').append(
-				$('<div>', {
-					class: 'alert alert-danger'
-				}).html('Erreur ! <br />' + response.status + ' ' + response.statusText)
-			);
-		});
+		function getTodos() {
+			return $http.get('http://localhost:3000/heroes');
+		}
+
+		function activate() {
+			var prom = getTodos();
+			prom.then(function (result) {
+					console.log('promise is now resolved!');
+					vm.todos = result.data;
+				}
+			).catch(function (error) {
+				console.log('promise is now rejected!');
+				$('body').append(
+					$('<div>', {
+						class: 'alert alert-danger'
+					}).html('Erreur ! <br />' + error)
+				);
+			});
+		}
+
+		activate();
 	}
 
 }());

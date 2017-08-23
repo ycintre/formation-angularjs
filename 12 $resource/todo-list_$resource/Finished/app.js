@@ -9,7 +9,7 @@
 	function TodoController($q, $resource) {
 		var vm = this;
 
-		var Todo = $resource('http://localhost:3000/todos/:id', {id: '@id'}, {
+		var TodoFactory = $resource('http://localhost:3000/todos/:id', {id: '@id'}, {
 			'update': {method: 'PUT'}
 		});
 
@@ -18,23 +18,29 @@
 		vm.statusFilter = {};
 
 		vm.addTodo = function () {
-			var todo = new Todo({
+
+			// Version avec création manuelle d'une instance
+			var todo = new TodoFactory({
 				title: vm.newTodo,
 				completed: false
 			});
-			todo.$save(function () {
-				loadTodos();
-			});
+			todo.$save(loadTodos);
+
+			// Version avec utilisation de la factory
+			// TodoFactory.save({
+			// 	title: vm.newTodo,
+			// 	completed: false
+			// }).$promise.then(loadTodos);
 
 			vm.newTodo = '';
 		};
 
 		vm.removeTodo = function (todo) {
 			// Version avec Resource et $promise
-			Todo.remove(todo).$promise.then(loadTodos());
+			TodoFactory.remove(todo).$promise.then(loadTodos);
 
 			// Version avec Resource et callback
-			// Todo.remove(todo, function () {
+			// TodoFactory.remove(todo, function () {
 			// 	loadTodos();
 			// });
 
@@ -56,7 +62,7 @@
 		};
 
 		vm.updateTodo = function (todo, doNotLoad) {
-			return Todo.update(todo, function () {
+			return TodoFactory.update(todo, function () {
 				if (!doNotLoad) {
 					loadTodos();
 				}
@@ -112,7 +118,7 @@
 
 		function loadTodos () {
 			// Version simple
-			vm.todos = Todo.query();
+			vm.todos = TodoFactory.query();
 
 			// Version avec promise
 			// Todo.query().$promise.then(function(response) {

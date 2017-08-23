@@ -8,7 +8,7 @@
   - Injecter le module `ngResource` dans l'application
   
 - Déclarer une resource `Todo` dans le controller
-- Créer une fonction qui charge la liste ds taches en utilisant la resource `Todo`
+- Créer une fonction qui charge la liste des taches en utilisant la resource `Todo`
 - Modifier la fonction d'ajout de tache pour poster la nouvelle tache au backend
 - Modifier la fonction de suppression de tache pour supprimer la tache du backend
 - Modifier la fonction de modification d'une tache pour reporter la modification dans le backend
