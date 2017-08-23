@@ -3,4 +3,4 @@
 
 ## Instructions
 
-- Au lien de simuler une latence avec `$q` et `$timeout` , utiliser le service `$http` pour faire un appel vers le backend et récupérer la liste des taches
+- Au lieu de simuler une latence avec `$q` et `$timeout` , utiliser le service `$http` pour faire un appel vers le backend et récupérer la liste des taches

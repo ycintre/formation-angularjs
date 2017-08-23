@@ -1,6 +1,6 @@
 # json server for testing REST API
 
-0 Set corporate proxy for npm
+0. Set corporate proxy for npm
 ```npm
 npm config set proxy http://ancy.proxy.corp.sopra:8080
 npm config set https-proxy http://ancy.proxy.corp.sopra:8080
