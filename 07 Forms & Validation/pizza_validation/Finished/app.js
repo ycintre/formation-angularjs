@@ -21,8 +21,10 @@
 			vm.count--;
 		};
 
-		vm.createReservation = function () {
-			console.log('New reservation created!', vm.reservation);
+		vm.createReservation = function (formController) {
+			console.log('New reservation created!');
+			console.log('ngModels:', vm.reservation);
+			console.log('form:', formController);
 		}
 	}
 }());

@@ -25,7 +25,7 @@
 
 		<form name="reservationForm">
 
-			<pre>{{ reservationForm | json}}</pre>
+			<!--<pre>{{ reservationForm | json}}</pre>-->
 
 			<div class="form-group"
 				 ng-class="{'has-error': reservationForm.clientName.$touched && reservationForm.clientName.$invalid}">
@@ -83,7 +83,7 @@
 					  ng-show="reservationForm.checkout.$touched && reservationForm.checkout.$error.min">Check-out must be after check-in</span>
 			</div>
 
-			<button class="btn btn-success" ng-click="pzCtrl.createReservation()"
+			<button class="btn btn-success" ng-click="pzCtrl.createReservation(reservationForm)"
 					ng-disabled="reservationForm.$invalid">Save
 			</button>
 		</form>
